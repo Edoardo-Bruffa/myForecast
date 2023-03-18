@@ -1,0 +1,20 @@
+.form-container {
+  position: absolute;
+  top: 65%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background-color: #A8DADC;
+  display: flex;
+  flex-direction: column;
+}
+.table-container{
+  position: absolute;
+  top: 65%;
+  left: 67%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 400px;
+  background-color: #E63946;
+}

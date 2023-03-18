@@ -1,0 +1,21 @@
+<div class="containerTable">
+  <div class="tabella" *ngIf="data">
+    <div class="riga" *ngFor="let dato of data.list; index as i">
+      <div class="colonna">
+        <p>{{dayOfWeek[i]}}</p>
+      </div>
+      <img [src]="res[i]">
+      <div class="colonna">
+        <p>{{dato.temp.day - kelvin | round:0}}</p>
+      </div>
+      <div class="colonna">
+        <p>{{dato.weather[0].main}}</p>
+      </div>
+      <div class="colonna">
+        <p>{{dato.weather[0].description}}</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

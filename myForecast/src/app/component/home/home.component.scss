@@ -1,0 +1,51 @@
+.header {
+  background-color: #E63946;
+  width: 100%;
+  height: 100px;
+}
+.main-container{
+  background-color:  white;
+  width: 100%;
+  height: 525px;
+}
+
+.navbar {
+  background-color: #1D3557;
+  width: 98.7%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 10px;
+}
+
+.navbar button {
+  width: 50%;
+  border: none;
+  background-color: #A8DADC;
+  color: inherit;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.navbar :first-child{
+  background-color: #457B9D;
+}
+
+.logOutButton{
+  position:absolute;
+  top:0%;
+  left: 98%;
+  width:2%;
+  border: 0;
+}
+img{
+  width:100%;
+}
+.titolo{
+  position: absolute;
+  top: 5%;
+  left: 27%;
+  color:aliceblue;
+  font-size: 100px;
+}

@@ -1,0 +1,18 @@
+.tabella {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.riga {
+  display: flex;
+}
+
+.colonna {
+  flex: 1;
+  padding: 11px;
+}
+
+p{
+  font-weight: 600;
+}

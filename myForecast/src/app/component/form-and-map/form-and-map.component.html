@@ -1,0 +1,12 @@
+<form (submit)="onSubmit()" [formGroup]="InputForm">
+  <mat-form-field class="example-form-field" >
+    <mat-label>Clearable input</mat-label>
+    <input matInput type="text" formControlName="input" >
+    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
+<div class="map">
+<img src="https://api.mapbox.com/styles/v1/mapbox/light-v10/static/-122.1766,37.7505,11,0/300x200?access_token=pk.eyJ1IjoiZWRvYXJkb2JydWZmYSIsImEiOiJjbGY5ejJranMyNTMzM3RvMXJ6ZjI0enpxIn0.o_X9Q6sIdO_R5455bXqyfg">
+</div>
