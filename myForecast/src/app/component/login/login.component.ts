@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/service/login.service';
 })
 export class LoginComponent {
   isUserLogged = false;
-  userInfo = new FormGroup({
+  userInfo = new FormGroup({ // form di login
     username: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(3)]),
     });
@@ -19,9 +19,10 @@ export class LoginComponent {
     constructor(private loginService: LoginService, public router: Router){}
 
   onSubmit(){
-    this.isUserLogged = this.loginService.logIn(this.userInfo.controls['username'].value, this.userInfo.controls['password'].value);
-    if (this.isUserLogged){
-      this.router.navigate(['/home']);
+    this.loginService.logIn(this.userInfo.controls['username'].value, this.userInfo.controls['password'].value);
+    //verifico che sia loggato e nel caso rimando alla home
+    if (this.loginService.loggedStatus()){
+      this.router.navigate(['/home/forecast']);
     }else{
       alert("Errore, username o password errati");
     }

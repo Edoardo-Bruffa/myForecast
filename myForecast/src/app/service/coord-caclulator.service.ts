@@ -9,10 +9,9 @@ export class CoordCaclulatorService {
 
   constructor(private http: HttpClient) {}
 
-  calcCoordinates( cityName: string | null): number[] {
+  calcCoordinates( cityName: string | null): number[] { //tramite il nome della città calcolo le coordinate geog.
     const apiKey = '6f72c678f66144389ee34ae96e42d3c8';
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${cityName}&key=${apiKey}`;
-
 
     this.http.get<any>(url).subscribe((response: any) => {
       this.coordinates[0] = response.results[0].geometry.lat;
@@ -22,7 +21,8 @@ export class CoordCaclulatorService {
     return this.coordinates;
   }
 
-  getCoordinates(){
+  //In alcuni componenti è necessario avere solo il recupero delle coordinate
+  getCoordinates(){ //ritorno le coordinate geografiche
     return this.coordinates;
   }
 

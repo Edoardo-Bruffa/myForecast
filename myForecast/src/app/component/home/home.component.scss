@@ -11,20 +11,23 @@
 
 .navbar {
   background-color: #1D3557;
+  color: white;
   width: 98.7%;
   height: 100px;
+
   display: flex;
   justify-content: space-between;
-  color: white;
+
   padding: 10px;
 }
 
 .navbar button {
   width: 50%;
-  border: none;
   background-color: #A8DADC;
+
+  border: none;
   color: inherit;
-  font-size: 18px;
+  font-size: 50px;
   cursor: pointer;
 }
 
@@ -33,19 +36,23 @@
 }
 
 .logOutButton{
-  position:absolute;
-  top:0%;
-  left: 98%;
   width:2%;
   border: 0;
+
+  position:absolute;
+  top:1.6%;
+  left: 99%;
+  transform: translate(-50%, -50%);
 }
 img{
   width:100%;
 }
 .titolo{
-  position: absolute;
-  top: 5%;
-  left: 27%;
   color:aliceblue;
   font-size: 100px;
+
+  position: absolute;
+  top: 7%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

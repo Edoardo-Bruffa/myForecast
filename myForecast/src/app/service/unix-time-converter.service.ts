@@ -7,7 +7,7 @@ export class UnixTimeConverterService {
   giorno: string = '';
   getDayOfWeekFromUnixTimestamp(unixTimestamp: number):any {
     let date = new Date(unixTimestamp *1000);
-    switch(date.getDay()){
+    switch(date.getDay()){ // ritorno il giorno della settimana
       case 0: return "Sunday";
       case 1: return "Monday";
       case 2: return "Tuesday";

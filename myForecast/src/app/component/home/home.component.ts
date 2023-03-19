@@ -15,8 +15,8 @@ export class HomeComponent {
 
   constructor(private router: Router){}
 
-  logOut(){
-    localStorage.removeItem("nomeUtente");
-    this.router.navigateByUrl("/login")
+  logOut(){ //al click del bottone
+    localStorage.removeItem("nomeUtente"); // rimuovo dal localStorage il nome utente
+    this.router.navigateByUrl("/login"); // rimando al login
   }
 }

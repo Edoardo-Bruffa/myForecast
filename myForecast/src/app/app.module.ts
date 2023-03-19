@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,8 +20,7 @@ import { RoundPipe } from './pipe/round.pipe';
 import { FormAndMapComponent } from './component/form-and-map/form-and-map.component';
 import { TableComponent } from './component/table/table.component';
 import { ForecastComponent } from './component/forecast/forecast.component';
-import { StatisticComponent } from './component/statistic/statistic.component';
-
+import { StatisticAndDashboardComponent } from './component/statistic-and-dashboard/statistic-and-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +31,7 @@ import { StatisticComponent } from './component/statistic/statistic.component';
     FormAndMapComponent,
     TableComponent,
     ForecastComponent,
-    StatisticComponent
+    StatisticAndDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +43,7 @@ import { StatisticComponent } from './component/statistic/statistic.component';
     FormsModule,
     MatInputModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

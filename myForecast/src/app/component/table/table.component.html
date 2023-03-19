@@ -4,7 +4,7 @@
       <div class="colonna">
         <p>{{dayOfWeek[i]}}</p>
       </div>
-      <img [src]="res[i]">
+      <img [src]="imageSrc[i]">
       <div class="colonna">
         <p>{{dato.temp.day - kelvin | round:0}}</p>
       </div>
@@ -14,8 +14,6 @@
       <div class="colonna">
         <p>{{dato.weather[0].description}}</p>
       </div>
-
     </div>
   </div>
-
 </div>

@@ -3,9 +3,9 @@
   <button class="logOutButton" (click)="logOut()"><img src="/../../assets/power-off.png"></button>
 </div>
 <div class="navbar">
-  <button>Forecast</button>
-  <button>Statistics</button>
+  <button routerLink="forecast">Forecast</button>
+  <button routerLink="dashboard">Dashboard</button>
 </div>
 <div class="main-container">
-  <app-forecast></app-forecast>
+  <router-outlet></router-outlet>
 </div>

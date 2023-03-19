@@ -1,12 +1,14 @@
 .example-form-field {
+  width: 200px;
+
   position: absolute;
   top: 20%;
   left: 50%;
-  width: 200px;
   transform: translate(-50%, -50%);
 }
 .map{
   position: absolute;
-  top: 35%;
-  left: 12.5%;
+  top: 62%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

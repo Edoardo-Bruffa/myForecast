@@ -9,7 +9,7 @@ import { UnixTimeConverterService } from 'src/app/service/unix-time-converter.se
 })
 export class TableComponent {
   kelvin = 273.15;
-  dayOfWeek: string[] = [];
+  dayOfWeek: string[] = []; // giorni della settimana
   data: WeatherData = {
     city: {
       id: 0,
@@ -26,29 +26,29 @@ export class TableComponent {
     message: 0,
     cnt: 0,
     list: [],
-  };
-  coordinates: number[] = [];
-  res: string[] = [];
+  }; // dati del meteo
+  coordinates: number[] = []; // coordinate della città
+  imageSrc: string[] = []; // variabile in cui vengono caricare le url delle immagini per l'html
 
   constructor(
     private forecastService: ForecastService,
-    private unixTimeConvertor: UnixTimeConverterService
+    private unixTimeConverter: UnixTimeConverterService
   ) {}
 
   ngOnInit(): void {
-    setInterval(()=>{
+      //chiamo l'API per avere le previsioni del meteo
       this.forecastService.getWeather().subscribe((response) => {
         this.data = response;
         this.displayTable();
       });
-    },200)
-
   }
 
   displayTable() {
+    // salvo i prossimi giorni della settimana e gli url delle immagini
     for (let i = 0; i < 6; i++) {
-      this.dayOfWeek[i] = this.unixTimeConvertor.getDayOfWeekFromUnixTimestamp(this.data.list[i].dt);
-      this.res[i] = 'https://api.openweathermap.org/img/w/' + this.data.list[i].weather[0].icon;+'.png';
+      this.dayOfWeek[i] = this.unixTimeConverter.getDayOfWeekFromUnixTimestamp(this.data.list[i].dt);
+      this.imageSrc[i] = 'https://api.openweathermap.org/img/w/' + this.data.list[i].weather[0].icon;+'.png';
     }
   }
+
 }

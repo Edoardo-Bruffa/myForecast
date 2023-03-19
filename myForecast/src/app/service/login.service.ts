@@ -10,20 +10,14 @@ export class LoginService {
 
   constructor() { }
 
-  logIn(nomeUtente: string | null, passwordUtente: string | null){
+  logIn(nomeUtente: string | null, passwordUtente: string | null){ //verifico l'utente sia registrato e login
     if(this.nome == nomeUtente && this.password == passwordUtente){
       this.isLogged = true;
       localStorage.setItem("nomeUtente", nomeUtente)
     }
-    return this.isLogged;
   }
 
-  logOut(){
-    this.isLogged = false;
-    return this.isLogged;
-  }
-
-  loggedStatus(){
+  loggedStatus(){ // ritorno
     return this.isLogged;
   }
 }
