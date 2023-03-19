@@ -70,6 +70,7 @@ export interface WeatherData {
 export class ForecastService {
   url: string = "";
   subject = new Subject<WeatherData>();
+  obsChart!: Observable<WeatherData>;
 
   constructor(private http: HttpClient) { }
 
@@ -87,6 +88,10 @@ export class ForecastService {
 
   getWeather(){
     return this.subject.asObservable(); // ritorno delle previsioni del meteo
+  }
+  getWeatherChart(){
+    this.obsChart = this.http.get<WeatherData>(this.url);
+    return this.obsChart
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { ForecastService, WeatherData } from 'src/app/service/forecast.service';
 import { UnixTimeConverterService } from './../../service/unix-time-converter.service';
@@ -8,7 +8,7 @@ import { UnixTimeConverterService } from './../../service/unix-time-converter.se
   templateUrl: './statistic-and-dashboard.component.html',
   styleUrls: ['./statistic-and-dashboard.component.scss'],
 })
-export class StatisticAndDashboardComponent implements OnInit{
+export class StatisticAndDashboardComponent {
   kelvin = 273.15;
   data: WeatherData = {
     city: {
@@ -26,11 +26,11 @@ export class StatisticAndDashboardComponent implements OnInit{
     message: 0,
     cnt: 0,
     list: [],
-  };
-  dayOfWeek: string[] = []; //giorni della settimana del meteo
-  doughnutData: number[] = [0, 0, 0, 0]; //dati del grafico doughnut
-  lineData: number[] = []; //dati del grafico line
-  barData: number[] = []; //dati del grafico bar
+  }; // dati del meteo
+  dayOfWeek: string[] = []; // giorni della settimana
+  doughnutData: number[] = [0,0,0,0]; // dati del grafico a ciambella
+  lineData: number[] = []; // dati del grafico a linea
+  barData: number[] = []; // dati del grafico barre
 
   constructor(
     private forecastService: ForecastService,
@@ -38,62 +38,62 @@ export class StatisticAndDashboardComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.forecastService.getWeather().subscribe((response) => {
-      //ricavo le previsioni del meteo
+    //richiamo il servizio per ricevere le previsioni del meteo
+    this.forecastService.getWeatherChart().subscribe((response) => {
       this.data = response;
-      this.displayChart(); //calcolo tutte le informazioni necessarie per realizzare i grafici
+      this.displayChart();
     });
   }
 
   displayChart() {
-
     for (let i = 0; i < 6; i++) {
-      // converto la data da unix time a giorno della settimana
-      this.dayOfWeek[i] = this.unixTimeConverter.getDayOfWeekFromUnixTimestamp(this.data.list[i].dt);
-      this.barData[i] = this.data.list[i].humidity; // ricavo i dati dell'umidità
+      // salvo i giorni della settimana che seguono il giorno presente
+      this.dayOfWeek[i] = this.unixTimeConverter.getDayOfWeekFromUnixTimestamp(
+        this.data.list[i].dt
+      );
+      // salvo i dati dell'umidità per il grafico a barre
+      this.barData[i] = this.data.list[i].humidity;
 
-      switch ( this.data.list[i].weather[0].main ) { // ricavo la statistica sul meteo dei prossimi giorni
-        case 'Clear':
-          this.doughnutData[0]++;
+      // creo la statistica dei dati per il grafico a ciambella
+      switch (this.data.list[i].weather[0].main) {
+        case "Clear": this.doughnutData[0]++;
           break;
-        case 'Clouds':
-          this.doughnutData[1]++;
+        case "Clouds": this.doughnutData[1]++;
           break;
-        case 'Rain':
-          this.doughnutData[2]++;
+        case "Rain": this.doughnutData[2]++;
           break;
-        case 'Snow':
-          this.doughnutData[3]++;
+        case "Snow": this.doughnutData[3]++;
           break;
       }
-      // ricavo le temperature arrotondando e trasformando da kelvin a centigradi
+      // ricavo i dati sulla temperatura per il grafico a linea
       this.lineData[i] = Math.round(this.data.list[i].temp.day - this.kelvin);
     }
   }
 
   ngAfterViewInit(): void {
+
     setTimeout(() => {
-      this.createDoughnutChart(); //creo il doughnut chart
+      this.createDoughnutChart(); // display del grafico a ciambella
 
-      this.createLineChart(); //creo il line chart
+      this.createLineChart(); // display del grafico a linea
 
-      this.createBarChart(); //creo il bar chart
+      this.createBarChart(); // display del grafico a barre
     }, 300);
   }
 
   createDoughnutChart() {
-    // prendo il tag HTML per stampare il grafico
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
-    // modifico i dati per utilizzarli con la libreria chartJS
+
     const doughnutDataFinal = {
       labels: ['Clear', 'Clouds', 'Rain', 'Snow'],
       datasets: [
         {
           data: this.doughnutData,
           backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
+            'rgb(145, 223, 255)',
+            'rgb(111, 111, 111)',
+            'rgb(0, 0, 0)',
+            'rgb(255,255,255)'
           ],
           hoverOffset: 4,
         },
@@ -116,9 +116,7 @@ export class StatisticAndDashboardComponent implements OnInit{
   }
 
   createLineChart() {
-    // prendo il tag HTML per stampare il grafico
     const ctx1 = document.getElementById('myChart1') as HTMLCanvasElement;
-    // creo il grafico
     if (ctx1)
       new Chart(ctx1, {
         type: 'line',
@@ -129,7 +127,7 @@ export class StatisticAndDashboardComponent implements OnInit{
               label: 'temperature',
               data: this.lineData,
               fill: false,
-              borderColor: 'rgb(75, 192, 192)',
+              borderColor: 'rgb(0, 0, 0)',
               tension: 0.1,
             },
           ],
@@ -146,14 +144,13 @@ export class StatisticAndDashboardComponent implements OnInit{
   }
 
   createBarChart() {
-    // prendo il tag HTML per stampare il grafico
     const ctx2 = document.getElementById('myChart2') as HTMLCanvasElement;
-    // modifico i dati per utilizzarli con la libreria chartJS
     const barDataFinal = {
       labels: this.dayOfWeek,
       datasets: [
         {
-          label: 'Humidity %',
+          backgroundColor: 'rgb(230,218,218)',
+          label: "Humidity %",
           data: this.barData,
         },
       ],
